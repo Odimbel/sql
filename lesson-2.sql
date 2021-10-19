@@ -1,2 +1,3 @@
+тест
 
 SELECT * FROM users
