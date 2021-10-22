@@ -1,0 +1,106 @@
+
+C:\Users\Admin>mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 98
+Server version: 8.0.26 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| books_db           |
+| cars_db            |
+| contacts_db        |
+| example            |
+| information_schema |
+| mysql              |
+| people_db          |
+| performance_schema |
+| shop               |
+| sys                |
+| world              |
++--------------------+
+11 rows in set (0.00 sec)
+
+mysql> create database sample;
+Query OK, 1 row affected (0.24 sec)
+
+mysql> \q
+Bye
+
+C:\Users\Admin>mysqldump example > example.sql
+
+C:\Users\Admin>dir
+ Том в устройстве C имеет метку Disk
+ Серийный номер тома: A485-782A
+
+ Содержимое папки C:\Users\Admin
+
+22.10.2021  16:54    <DIR>          .
+22.10.2021  16:54    <DIR>          ..
+16.10.2021  20:32    <DIR>          .config
+18.10.2021  20:18    <DIR>          .eclipse
+19.10.2021  21:20               178 .gitconfig
+16.10.2021  20:32    <DIR>          .ssh
+24.07.2021  12:30    <DIR>          3D Objects
+27.07.2021  23:46    <DIR>          ansel
+24.07.2021  12:30    <DIR>          Contacts
+19.10.2021  21:13    <DIR>          Desktop
+20.10.2021  20:41    <DIR>          Documents
+20.10.2021  16:26    <DIR>          Downloads
+22.10.2021  17:27             1 945 example.sql
+20.10.2021  21:49    <DIR>          Favorites
+20.10.2021  21:49                23 hello.sql
+24.07.2021  12:30    <DIR>          Links
+24.07.2021  12:30    <DIR>          Music
+09.08.2021  21:05    <DIR>          OneDrive
+14.08.2021  19:58    <DIR>          Pictures
+24.07.2021  12:30    <DIR>          Saved Games
+24.07.2021  12:47    <DIR>          Searches
+15.10.2021  10:51    <DIR>          Tracing
+24.08.2021  20:05    <DIR>          Videos
+               3 файлов          2 146 байт
+              20 папок  13 414 342 656 байт свободно
+
+C:\Users\Admin>mysql sample < example.sql
+
+C:\Users\Admin>mysql
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 101
+Server version: 8.0.26 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use sample
+Database changed
+
+mysql> show tables;
++------------------+
+| Tables_in_sample |
++------------------+
+| users            |
++------------------+
+1 row in set (0.00 sec)
+
+mysql> desc users;
++-------+-----------------+------+-----+---------+----------------+
+| Field | Type            | Null | Key | Default | Extra          |
++-------+-----------------+------+-----+---------+----------------+
+| id    | bigint unsigned | NO   | PRI | NULL    | auto_increment |
+| name  | varchar(20)     | NO   | UNI | NULL    |                |
++-------+-----------------+------+-----+---------+----------------+
+2 rows in set (0.00 sec)
