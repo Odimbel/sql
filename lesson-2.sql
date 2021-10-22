@@ -1,3 +1,0 @@
-тест
-
-SELECT * FROM users
