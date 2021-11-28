@@ -1,0 +1,47 @@
+
+-- Администрирование MySQL
+
+-- 1 задание
+
+create user 'shop_read'@'localhost';
+
+grant select, show view on shop.* 
+	to 'shop_read'@'localhost';
+
+
+create user 'shop_all'@'localhost';
+
+grant all on shop.* 
+	to 'shop_all'@'localhost';
+
+
+select host, user from mysql.user
+
+
+-- 2 задание
+
+create table akk ( 
+	id serial primary key,
+	name varchar (50),
+	password varchar (50)
+	);
+
+insert into akk (name, password) values 
+	('Дима', 'dsfhwefy45'),
+	('Вика', 'gerg616ege'),
+	('Женя', '54e6g6eg3e'),
+	('Лена', 'jk6jh4k1h6');
+
+select * from akk
+
+create view user_akk 
+	as select name
+		from akk
+	
+select * from user_akk
+
+
+create user 'user_akk'@'localhost';
+
+grant select (name) on shop.user_akk 
+	to 'user_akk'@'localhost';
