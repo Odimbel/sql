@@ -1,0 +1,83 @@
+
+-- Хранимые процедуры и функции, триггеры
+
+-- 1 задание
+
+select now(), hour(now()) -- вывод часов online
+
+delimiter ;
+
+create FUNCTION get_hour() -- возвращает текущий час
+returns TEXT deterministic -- здесь тип переменной
+begin
+  RETURN hour(now());
+end//
+
+select get_hour()
+	
+create function hello ()
+returns tinytext deterministic -- здесь тип переменной
+begin
+	declare hour int;
+	set hour = hour(now());
+	case
+		when hour between 0 and 5 then 
+			return "Доброй ночи";
+		when hour between 6 and 11 then 
+			return "Доброй утро";
+		when hour between 12 and 17 then 
+			return "Доброй день";
+		when hour between 18 and 23 then 
+			return "Доброй вечер";
+	end case;
+end//
+
+select now(), Hello()//
+
+
+-- 2 задание
+select * from products p 
+
+create trigger notnull_name_description_insert before insert on products
+for each row begin 
+  if new.name is null AND new.description is null THEN
+    SIGNAL SQLSTATE '45000' set MESSAGE_TEXT = 'Name or description are NULL';
+  end if;
+end
+
+
+insert into products (name, description, price, catalog_id)
+	values (null, null, 1500, 2)
+	
+insert into products (name, description, price, catalog_id)
+	values ('Комплектующие', null, 1500, 2)
+	
+	
+-- 3 задание
+
+create function fb (num int)
+returns int deterministic
+begin
+	if num <= 0 then
+		return 0;
+	elseif num =1 and num = 2 then
+		return 1;
+	else
+		return fb (num -1) + fb (num -2);
+	end if;
+end
+
+select fb (10)
+
+
+create function bine (num int)
+returns int deterministic
+begin
+	declare fs double;
+	set fs = sqrt(5); -- корень из 5
+	
+	return (pow((1+fs) / 2.0, num) + pow((1-fs) / 2.0, num)) / fs;
+end
+
+select bine(10)	
+	
